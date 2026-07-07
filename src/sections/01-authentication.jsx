@@ -1,4 +1,4 @@
-﻿/* Section 01 â€” Authentication.
+/* Section 01 — Authentication.
  *
  * Prose + interactive JWT Decoder & Analyzer.
  *
@@ -17,9 +17,9 @@ import { useState, useMemo } from 'react';
 import { Sparkles, ShieldCheck, ShieldAlert, AlertTriangle, Eye } from 'lucide-react';
 import { Code, Callout, H2, P, Kbd, SectionLabel } from '../components/primitives.jsx';
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ───────────────────────────────────────────────────────────────────────
 // JWT encoder/decoder utilities
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ───────────────────────────────────────────────────────────────────────
 
 function b64urlEncode(str) {
   return btoa(str).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
@@ -58,9 +58,9 @@ function decodeJwt(token) {
 
 const NOW_SEC = Math.floor(Date.now() / 1000);
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-// Pre-loaded example tokens â€” each demonstrates a class of issue
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ───────────────────────────────────────────────────────────────────────
+// Pre-loaded example tokens — each demonstrates a class of issue
+// ───────────────────────────────────────────────────────────────────────
 
 const EXAMPLES = [
   {
@@ -111,9 +111,9 @@ const EXAMPLES = [
   },
 ];
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ───────────────────────────────────────────────────────────────────────
 // Security analysis
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ───────────────────────────────────────────────────────────────────────
 
 const SECURE_ALGS = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'ES384', 'ES512', 'PS256', 'PS384', 'PS512', 'EdDSA'];
 const REDFLAG_KEYS = ['password', 'pwd', 'secret', 'ssn', 'credit_card', 'creditcard', 'cc_number', 'private_key', 'apikey', 'api_key', 'pin'];
@@ -143,7 +143,7 @@ function analyze(decoded) {
       const text = ago > 3600
         ? `${Math.floor(ago / 3600)}h ${Math.floor((ago % 3600) / 60)}m ago`
         : `${Math.floor(ago / 60)}m ${ago % 60}s ago`;
-      issues.push({ severity: 'high', text: `Token expired ${text}. A correct server rejects it. A buggy server may still accept it â€” check your "exp" handling.` });
+      issues.push({ severity: 'high', text: `Token expired ${text}. A correct server rejects it. A buggy server may still accept it — check your "exp" handling.` });
     } else {
       const text = remaining > 3600
         ? `${Math.floor(remaining / 3600)}h ${Math.floor((remaining % 3600) / 60)}m`
@@ -151,7 +151,7 @@ function analyze(decoded) {
       passes.push({ text: `Expires in ${text}. Short-lived tokens reduce damage if leaked.` });
     }
   } else {
-    issues.push({ severity: 'high', text: 'No "exp" claim. The token never expires. Leaked once â†’ leaked forever. Always include exp; pick a short window (15 minutes is common) and rely on refresh tokens for longer sessions.' });
+    issues.push({ severity: 'high', text: 'No "exp" claim. The token never expires. Leaked once → leaked forever. Always include exp; pick a short window (15 minutes is common) and rely on refresh tokens for longer sessions.' });
   }
 
   // Sensitive data in payload
@@ -159,7 +159,7 @@ function analyze(decoded) {
     const keys = Object.keys(decoded.payload).map(k => k.toLowerCase());
     const found = REDFLAG_KEYS.filter(rf => keys.some(k => k.includes(rf)));
     if (found.length > 0) {
-      issues.push({ severity: 'critical', text: `Payload contains sensitive field(s): ${found.join(', ')}. JWT payloads are base64-encoded, NOT encrypted â€” anyone with the token can read every field. Never put passwords, secrets, or unmasked PII in a JWT.` });
+      issues.push({ severity: 'critical', text: `Payload contains sensitive field(s): ${found.join(', ')}. JWT payloads are base64-encoded, NOT encrypted — anyone with the token can read every field. Never put passwords, secrets, or unmasked PII in a JWT.` });
     }
   }
 
@@ -223,7 +223,7 @@ function JwtDecoder() {
           <Sparkles size={14} className="text-cyan-300" />
           <span className="text-cyan-300 text-[11px] tracking-[0.25em] uppercase font-semibold"
             style={{ fontFamily: 'JetBrains Mono, monospace' }}>
-            interactive Â· jwt decoder &amp; analyzer
+            interactive · jwt decoder &amp; analyzer
           </span>
         </div>
       </div>
@@ -232,7 +232,7 @@ function JwtDecoder() {
         {/* Example pickers */}
         <div className="text-zinc-500 text-[9.5px] tracking-[0.25em] uppercase mb-2"
           style={{ fontFamily: 'JetBrains Mono, monospace' }}>
-          example tokens â€” click to load
+          example tokens — click to load
         </div>
         <div className="flex flex-wrap gap-1.5 mb-4">
           {EXAMPLES.map(e => (
@@ -334,9 +334,9 @@ function JwtDecoder() {
   );
 }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ───────────────────────────────────────────────────────────────────────
 // Section content
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ───────────────────────────────────────────────────────────────────────
 
 export default function Section01_Auth() {
   return (
@@ -344,11 +344,11 @@ export default function Section01_Auth() {
       <SectionLabel>section 01</SectionLabel>
       <h2 className="text-zinc-50 text-[28px] leading-tight mb-3"
         style={{ fontFamily: 'Bricolage Grotesque, sans-serif', fontWeight: 600 }}>
-        Authentication â€” who are you?
+        Authentication — who are you?
       </h2>
       <P>
         Every API call carries an implicit question: who is calling? Authentication is the answer.
-        Done well, it identifies the caller cryptographically and confidently â€” every request is
+        Done well, it identifies the caller cryptographically and confidently — every request is
         either from someone you know, or rejected. Done badly, you ship an API where anyone can
         impersonate anyone, and the only thing standing between an attacker and your data is hope.
       </P>
@@ -357,9 +357,9 @@ export default function Section01_Auth() {
         APIs, then drills the one that confuses everyone: JWT.
       </P>
 
-      <H2 num="â—‡ 01">The four authentication mechanisms</H2>
+      <H2 num="◇ 01">The four authentication mechanisms</H2>
       <Code id="auth-methods" lang="text">{`METHOD        WHAT'S SENT                                  WHO USES IT
-â”€â”€â”€â”€â”€â”€        â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€                                  â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+──────        ───────────                                  ───────────
 API key       Authorization: Bearer sk_test_abc123...      Server-to-server, simple APIs (Stripe, OpenAI)
 Bearer token  Authorization: Bearer eyJhbGc...             User sessions after login (most modern web APIs)
 Basic auth    Authorization: Basic base64(user:pass)       Legacy systems, internal tools
@@ -369,26 +369,26 @@ OAuth         Bearer token obtained via OAuth flow         Third-party integrati
         header. The difference is what those credentials ARE and how they were obtained.
       </P>
 
-      <H2 num="â—‡ 02">Where credentials go â€” and where they don't</H2>
+      <H2 num="◇ 02">Where credentials go — and where they don't</H2>
       <P>
         The <Kbd>Authorization</Kbd> header is the only correct place for secrets. Anywhere else
         leaks:
       </P>
       <ul className="text-zinc-300 text-[15px] leading-relaxed my-3 list-disc pl-6 space-y-1.5 max-w-prose">
-        <li><strong className="text-rose-400">In the URL</strong> (<Kbd>?api_key=...</Kbd>) â€” URLs end up in server logs, browser history, Referer headers, and bug-tracker tickets. The secret leaks every time the URL is shared.</li>
-        <li><strong className="text-rose-400">In a cookie without Secure + HttpOnly + SameSite</strong> â€” vulnerable to theft via XSS or accidental transmission over HTTP.</li>
-        <li><strong className="text-rose-400">In the request body for a GET</strong> â€” same logging problem; some clients/proxies will not even send it.</li>
-        <li><strong className="text-rose-400">In a custom header you invented</strong> â€” fine if you must, but standard Bearer tokens work with every tool. Diverge only when you have to.</li>
+        <li><strong className="text-rose-400">In the URL</strong> (<Kbd>?api_key=...</Kbd>) — URLs end up in server logs, browser history, Referer headers, and bug-tracker tickets. The secret leaks every time the URL is shared.</li>
+        <li><strong className="text-rose-400">In a cookie without Secure + HttpOnly + SameSite</strong> — vulnerable to theft via XSS or accidental transmission over HTTP.</li>
+        <li><strong className="text-rose-400">In the request body for a GET</strong> — same logging problem; some clients/proxies will not even send it.</li>
+        <li><strong className="text-rose-400">In a custom header you invented</strong> — fine if you must, but standard Bearer tokens work with every tool. Diverge only when you have to.</li>
       </ul>
 
-      <Callout kind="danger" title="THE CARDINAL RULE â€” TLS, ALWAYS">
+      <Callout kind="danger" title="THE CARDINAL RULE — TLS, ALWAYS">
         Every authentication scheme above is broken trivially if you transmit it over plain HTTP.
-        The credentials are visible to anyone on the same network â€” coffee shop wifi, your ISP,
+        The credentials are visible to anyone on the same network — coffee shop wifi, your ISP,
         any router in between. <Kbd>https://</Kbd> on every endpoint, in dev and production. Modern
         platforms (Vercel, Cloudflare, AWS) make this free. Never accept anything else.
       </Callout>
 
-      <H2 num="â—‡ 03">JWT â€” the format that won</H2>
+      <H2 num="◇ 03">JWT — the format that won</H2>
       <P>
         JWT (JSON Web Token, pronounced "jot") is how most modern web APIs represent the bearer
         token. After a user logs in with their password, the server issues a JWT; the client sends
@@ -398,11 +398,11 @@ OAuth         Bearer token obtained via OAuth flow         Third-party integrati
       <P>
         A JWT looks like three base64-encoded chunks separated by dots:
       </P>
-      <Code id="jwt-shape" lang="text">{`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9     â† header
+      <Code id="jwt-shape" lang="text">{`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9     ← header
 .
-eyJzdWIiOiJ1c2VyXzQyIiwibmFtZSI6IkNsZSJ9 â† payload (claims)
+eyJzdWIiOiJ1c2VyXzQyIiwibmFtZSI6IkNsZSJ9 ← payload (claims)
 .
-SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQss â† signature`}</Code>
+SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQss ← signature`}</Code>
       <P>
         Decoded:
       </P>
@@ -411,33 +411,33 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQss â† signature`}</Code>
 
 // payload (these are called "claims")
 {
-  "sub": "user_42",            // subject â€” who this token is about
+  "sub": "user_42",            // subject — who this token is about
   "name": "Cle",
-  "iss": "auth.example.com",   // issuer â€” who created the token
-  "aud": "api.example.com",    // audience â€” who should accept it
+  "iss": "auth.example.com",   // issuer — who created the token
+  "aud": "api.example.com",    // audience — who should accept it
   "iat": 1735000000,           // issued at
   "exp": 1735003600            // expires
 }
 
-// signature â€” proves the token came from the issuer`}</Code>
+// signature — proves the token came from the issuer`}</Code>
 
-      <H2 num="â—‡ 04">The big JWT mistake â€” payloads are not secret</H2>
+      <H2 num="◇ 04">The big JWT mistake — payloads are not secret</H2>
       <P>
         The payload is base64-encoded. That is NOT encryption. Anyone with the token can paste
         it into <Kbd>jwt.io</Kbd> (or the decoder below) and read every claim. NEVER put passwords,
         password hashes, SSNs, full credit card numbers, or other sensitive data in a JWT payload.
-        The cryptographic signature only verifies the payload was not tampered with â€” it does not
+        The cryptographic signature only verifies the payload was not tampered with — it does not
         hide what is inside.
       </P>
       <Callout kind="warn" title="WHAT BELONGS IN A JWT PAYLOAD">
         Identifiers (user ID, role, tenant), short metadata (issued at, expires at), and references
         to other data (a session ID you can look up). NOT actual secrets, NOT large profile blobs,
         NOT anything you would not want a casual attacker to read. If you need to ship sensitive
-        data alongside a token, encrypt it separately and send the encrypted blob â€” or just send
+        data alongside a token, encrypt it separately and send the encrypted blob — or just send
         an opaque session ID and look the data up server-side.
       </Callout>
 
-      <H2 num="â—‡ 05">JWT failure modes â€” and how attackers exploit them</H2>
+      <H2 num="◇ 05">JWT failure modes — and how attackers exploit them</H2>
       <P>
         Three JWT-specific bugs come up over and over in real bug bounty reports:
       </P>
@@ -452,10 +452,10 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQss â† signature`}</Code>
         </li>
         <li>
           <strong className="text-rose-400">Algorithm confusion.</strong> A server expecting RS256
-          (asymmetric â€” different keys to sign and verify) is tricked into using HS256 (symmetric).
+          (asymmetric — different keys to sign and verify) is tricked into using HS256 (symmetric).
           Attacker forges a token signed with the server's PUBLIC key (which is, well, public);
           server uses that public key as a symmetric secret to verify; verification passes. Fix:
-          same as above â€” pin the algorithm; never trust the <Kbd>alg</Kbd> header.
+          same as above — pin the algorithm; never trust the <Kbd>alg</Kbd> header.
         </li>
         <li>
           <strong className="text-rose-400">Missing expiration check.</strong> Server validates the
@@ -464,7 +464,7 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQss â† signature`}</Code>
         </li>
       </ol>
 
-      <H2 num="â—‡ 06">Token lifetime â€” short access, longer refresh</H2>
+      <H2 num="◇ 06">Token lifetime — short access, longer refresh</H2>
       <P>
         The longer a token is valid, the more damage a leak does. Modern systems use a pair:
       </P>
@@ -474,33 +474,32 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQss â† signature`}</Code>
       </ul>
 
       <SectionLabel>practice</SectionLabel>
-      <H2 num="â—‡ 07">Decode a JWT and see what it actually contains</H2>
+      <H2 num="◇ 07">Decode a JWT and see what it actually contains</H2>
       <P>
         Pre-loaded examples cover the main classes of JWT issue. Click through them. Watch the
         analysis panel call out each problem and explain why it matters. Or paste your own token
-        (from a development environment â€” never paste a real production token into ANY web tool).
+        (from a development environment — never paste a real production token into ANY web tool).
       </P>
 
       <JwtDecoder />
 
-      <H2 num="â—‡ 08">Hardening checklist for authentication</H2>
+      <H2 num="◇ 08">Hardening checklist for authentication</H2>
       <ul className="text-zinc-300 text-[15px] leading-relaxed my-3 list-disc pl-6 space-y-1.5 max-w-prose">
-        <li>âœ“ TLS on every endpoint, always</li>
-        <li>âœ“ Credentials in <Kbd>Authorization</Kbd> header only; never in URLs or query strings</li>
-        <li>âœ“ Use a battle-tested JWT library; never implement signature verification yourself</li>
-        <li>âœ“ Hardcode the allowed algorithms server-side; never read <Kbd>alg</Kbd> from the token</li>
-        <li>âœ“ Always check <Kbd>exp</Kbd>; reject expired tokens</li>
-        <li>âœ“ Validate <Kbd>iss</Kbd> (issuer) and <Kbd>aud</Kbd> (audience) claims against expected values</li>
-        <li>âœ“ Short access-token lifetimes (15 min); separate longer-lived refresh tokens</li>
-        <li>âœ“ Use sufficiently strong signing keys; rotate them on a schedule and immediately on suspicion of compromise</li>
-        <li>âœ“ Never put sensitive data in the payload</li>
-        <li>âœ“ Rate-limit your auth endpoints aggressively â€” login is the #1 brute-force target</li>
+        <li>✓ TLS on every endpoint, always</li>
+        <li>✓ Credentials in <Kbd>Authorization</Kbd> header only; never in URLs or query strings</li>
+        <li>✓ Use a battle-tested JWT library; never implement signature verification yourself</li>
+        <li>✓ Hardcode the allowed algorithms server-side; never read <Kbd>alg</Kbd> from the token</li>
+        <li>✓ Always check <Kbd>exp</Kbd>; reject expired tokens</li>
+        <li>✓ Validate <Kbd>iss</Kbd> (issuer) and <Kbd>aud</Kbd> (audience) claims against expected values</li>
+        <li>✓ Short access-token lifetimes (15 min); separate longer-lived refresh tokens</li>
+        <li>✓ Use sufficiently strong signing keys; rotate them on a schedule and immediately on suspicion of compromise</li>
+        <li>✓ Never put sensitive data in the payload</li>
+        <li>✓ Rate-limit your auth endpoints aggressively — login is the #1 brute-force target</li>
       </ul>
       <Callout kind="info" title="WHAT'S NEXT">
         Authentication identifies the caller. Section 02 covers what the caller is allowed to DO
-        once they are identified â€” authorization, OAuth flows, and the principle of least privilege.
+        once they are identified — authorization, OAuth flows, and the principle of least privilege.
       </Callout>
     </>
   );
 }
-
